@@ -5,6 +5,8 @@
 #include <map>
 #include <utility>
 
+#include <iostream>
+
 struct older_than
 {
     using cache_key = std::pair<const person*, const person*>;
@@ -17,6 +19,7 @@ struct older_than
         if (it != cache.end())
             return it->second;
 
+        std::cout << "Performing very expensive calculation...\n";
         bool result = p1.age > p2.age; // very expensive calculation
         cache.emplace(key, result);
 
