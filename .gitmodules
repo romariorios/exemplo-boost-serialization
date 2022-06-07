@@ -1,0 +1,3 @@
+[submodule "deps/eos-portable-archive"]
+	path = deps/eos-portable-archive
+	url = https://github.com/daldegam/eos-portable-archive.git
