@@ -37,6 +37,9 @@ int main(int argc, char* argv[])
         std::ifstream cache{cachefile_name};
         if (cache) {
             boost::archive::text_iarchive ar{cache};
+            auto& h = ar.template get_helper<older_than_load_helper>();
+            h.repo = &repo;
+
             ar >> older;
         }
     }
@@ -64,9 +67,6 @@ int main(int argc, char* argv[])
     std::ofstream cache{cachefile_name};
 
     boost::archive::text_oarchive ar{cache};
-    auto& h = ar.template get_helper<older_than_load_helper>();
-    h.repo = &repo;
-
     ar << older;
 
     return 0;
